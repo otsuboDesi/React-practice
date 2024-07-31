@@ -10,8 +10,7 @@ export const App = () => {
   };
   return (
     <>
-      console.log("test")
-      {}
+      {console.log("test")}
       <h1 style={{ color: "red" }}>Hello!</h1>
       <p style={contentStyle}>How are you?</p>
       <button onClick={onClickButton}>Button</button>
