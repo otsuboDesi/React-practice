@@ -9,8 +9,8 @@ export const App = () => {
     <>
       {console.log("test")}
       <h1 style={{ color: "red" }}>Hello!</h1>
-      <ColoredMessage color="blue" message="How are you?" />
-      <ColoredMessage color="pink" message="I'm good!" />
+      <ColoredMessage color="blue">How are you?</ColoredMessage>
+      <ColoredMessage color="pink">I'm good!</ColoredMessage>
       <button onClick={onClickButton}>Button</button>
     </>
   );
