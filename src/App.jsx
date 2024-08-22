@@ -3,6 +3,7 @@ import { ColoredMessage } from "./components/ColoredMessage";
 import { InlineStyles } from "./components/InlineStyles";
 import { CssModules } from "./components/CssModules";
 import { StyledJsx } from "./components/StyledJsx";
+import { StyledComponents } from "./components/StyledComponents";
 
 export const App = () => {
   console.log("rendering");
@@ -30,8 +31,8 @@ export const App = () => {
 
       <InlineStyles />
       <CssModules />
-
       <StyledJsx />
+      <StyledComponents />
     </>
   );
 };
