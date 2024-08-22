@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ColoredMessage } from "./components/ColoredMessage";
+import { InlineStyles } from "./components/InlineStyles";
 
 export const App = () => {
   console.log("rendering");
@@ -13,7 +14,7 @@ export const App = () => {
   // ある値が変わったときに限り、ある処理を実行する
   // コンポーネントのマウント時(最初にレンダリングされる時)にも必ず実行される
   useEffect(() => {
-    alert();
+    // alert();
   }, [num]);
 
   // コンポーネントの再レンダリングを何回も繰り返すと、再レンダリングのコストが無駄になるため、値が変わったときだけに実行を行う
@@ -24,6 +25,8 @@ export const App = () => {
       <ColoredMessage color="pink">I'm good!</ColoredMessage>
       <button onClick={onClickButton}>Button</button>
       <p>{num}</p>
+
+      <InlineStyles />
     </>
   );
 };
