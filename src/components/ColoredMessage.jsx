@@ -1,5 +1,5 @@
 export const ColoredMessage = (props) => {
-  // propsを分割代入する
+  // propsを分割代入する(destructuring assignment)
   const { color, children } = props;
   const contentStyle = {
     // color: color の省略記法
