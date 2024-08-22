@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ColoredMessage } from "./components/ColoredMessage";
 import { InlineStyles } from "./components/InlineStyles";
+import { CssModules } from "./components/CssModules";
 
 export const App = () => {
   console.log("rendering");
@@ -27,6 +28,7 @@ export const App = () => {
       <p>{num}</p>
 
       <InlineStyles />
+      <CssModules />
     </>
   );
 };
