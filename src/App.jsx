@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ColoredMessage } from "./components/ColoredMessage";
 import { InlineStyles } from "./components/InlineStyles";
 import { CssModules } from "./components/CssModules";
+import { StyledJsx } from "./components/StyledJsx";
 
 export const App = () => {
   console.log("rendering");
@@ -29,6 +30,8 @@ export const App = () => {
 
       <InlineStyles />
       <CssModules />
+
+      <StyledJsx />
     </>
   );
 };
