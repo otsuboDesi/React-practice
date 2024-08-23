@@ -1,29 +1,19 @@
-import { useState, useEffect } from "react";
-import { ColoredMessage } from "./components/ColoredMessage";
+import { useState } from "react";
+import { Card } from "./components/Card";
 
 export const App = () => {
-  console.log("rendering");
-  // 再レンダリング： stateが更新されたときに関数コンポーネントは再び頭から処理が実行され差分があるDOMを検知してコンポーネントを再処理する
-  const [num, setNum] = useState(0);
+  // 管理者フラグ
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  const onClickButton = () => {
-    setNum(num + 1);
-  };
+  // 切り替え押下時
+  const onClickSwitch = () => setIsAdmin(!isAdmin);
 
-  // ある値が変わったときに限り、ある処理を実行する
-  // コンポーネントのマウント時(最初にレンダリングされる時)にも必ず実行される
-  useEffect(() => {
-    alert();
-  }, [num]);
-
-  // コンポーネントの再レンダリングを何回も繰り返すと、再レンダリングのコストが無駄になるため、値が変わったときだけに実行を行う
   return (
-    <>
-      <h1 style={{ color: "red" }}>Hello!</h1>
-      <ColoredMessage color="blue">How are you?</ColoredMessage>
-      <ColoredMessage color="pink">I'm good!</ColoredMessage>
-      <button onClick={onClickButton}>Button</button>
-      <p>{num}</p>
-    </>
+    <div>
+      {/* 管理者フラグがtrueの時とそれ以外で文字を出し分け */}
+      {isAdmin ? <span>管理者です</span> : <span>管理者以外です</span>}
+      <button onClick={onClickSwitch}>切り替え</button>
+      <Card isAdmin={isAdmin} />
+    </div>
   );
 };
