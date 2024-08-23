@@ -19,3 +19,8 @@ export const AdminFlagProvider = (props) => {
     </AdminFlagContext.Provider>
   );
 };
+
+// NOTE:Contextオブジェクトの値が何か更新されたときはuseContextでそのCon
+
+// textを参照しているコンポーネントはすべて再レンダリングされる。
+// なので１つのContextに属性の異なる色んなStateを詰め込むのはやめたほうがいい。
