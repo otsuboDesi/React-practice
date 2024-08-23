@@ -1,29 +1,48 @@
-import { useState, useEffect } from "react";
-import { ColoredMessage } from "./components/ColoredMessage";
+import { useState } from "react";
+import axios from "axios";
 
 export const App = () => {
-  console.log("rendering");
-  // 再レンダリング： stateが更新されたときに関数コンポーネントは再び頭から処理が実行され差分があるDOMを検知してコンポーネントを再処理する
-  const [num, setNum] = useState(0);
+  const [userList, setUserList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const onClickButton = () => {
-    setNum(num + 1);
+  // ユーザー取得ボタン押下アクション
+  const onClickFetchUser = () => {
+    // ボタン押下時にローディングフラグ on、エラーフラグ off
+    setIsLoading(true);
+    setIsError(false);
+
+    // API の実行
+    axios
+      .get("https://example.com/users")
+      .then((result) => {
+        // 苗字と名前を結合するように変換
+        const users = result.data.map((user) => ({
+          id: user.id,
+          name: `${user.lastname} ${user.firstname}`,
+          age: user.age,
+        }));
+        // ユーザー一覧 State を更新
+        setUserList(users);
+      })
+      // エラーの場合はエラーフラグを on
+      .catch(() => setIsError(true))
+      // 処理完了後はローディングフラグを off
+      .finally(() => setIsLoading(false));
   };
-
-  // ある値が変わったときに限り、ある処理を実行する
-  // コンポーネントのマウント時(最初にレンダリングされる時)にも必ず実行される
-  useEffect(() => {
-    alert();
-  }, [num]);
-
-  // コンポーネントの再レンダリングを何回も繰り返すと、再レンダリングのコストが無駄になるため、値が変わったときだけに実行を行う
   return (
-    <>
-      <h1 style={{ color: "red" }}>Hello!</h1>
-      <ColoredMessage color="blue">How are you?</ColoredMessage>
-      <ColoredMessage color="pink">I'm good!</ColoredMessage>
-      <button onClick={onClickButton}>Button</button>
-      <p>{num}</p>
-    </>
+    <div>
+      <button onClick={onClickFetchUser}>ユーザー取得</button>
+      {/* エラーの場合はエラーメッセージを表示 */}
+      {isError && <p style={{ color: "red" }}>エラーが発生しました</p>}
+      {/* ローディング中は表示を切り替える */}
+      {isLoading ? (
+        <p>データ取得中です</p>
+      ) : (
+        userList.map((user) => (
+          <p key={user.id}>{`${user.id}: ${user.name} (${user.age}歳)`}</p>
+        ))
+      )}
+    </div>
   );
 };
