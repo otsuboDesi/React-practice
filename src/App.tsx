@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ListItem } from "./components/ListItem";
-
-type User = {
-  id: number;
-  name: string;
-  age: number;
-  personalColor: string;
-};
+import type { User } from "./types/user";
 
 const dummyUserData: User[] = [
   { id: 1, name: "Nushida", age: 24, personalColor: "blue" },
