@@ -6,7 +6,13 @@ import type { User } from "./types/user";
 const dummyUserData: User[] = [
   { id: 1, name: "Nushida", age: 24, personalColor: "blue" },
   { id: 2, name: "Sakioka", age: 28, personalColor: "pink" },
-  { id: 3, name: "Goto", age: 23, personalColor: "green" },
+  {
+    id: 3,
+    name: "Goto",
+    age: 23,
+    personalColor: "green",
+    hobbies: ["game", "soccer"],
+  },
 ];
 
 export const App = () => {
@@ -30,6 +36,7 @@ export const App = () => {
           name={user.name}
           age={user.age}
           personalColor={user.personalColor}
+          hobbies={user.hobbies}
         />
       ))}
     </div>
