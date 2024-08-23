@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 // contextの器を作成
 export const AdminFlagContext = createContext({});
@@ -7,13 +7,14 @@ export const AdminFlagContext = createContext({});
 export const AdminFlagProvider = (props) => {
   const { children } = props;
 
-  // 動作確認の雨に適当なオブジェクトを定義
-  const sampleObj = { sampleValues: "テスト" };
+  // 管理者フラグ
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // AdminFlagContextの中にProviderがあるのでそれでchildrenを囲む
   // valueの中にグローバルに扱う実際の値を設定
   return (
-    <AdminFlagContext.Provider value={sampleObj}>
+    // contextをおぶじぇくととしてisAdmin, setIsAdminを設定
+    <AdminFlagContext.Provider value={{ isAdmin, setIsAdmin }}>
       {children}
     </AdminFlagContext.Provider>
   );
