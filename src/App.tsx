@@ -21,6 +21,12 @@ export const App = () => {
       <h1>Memo App</h1>
       <input value={text} onChange={handleChange}></input>
       <button onClick={handleClickAdd}>追加</button>
+      <div>Memo List</div>
+      <div>
+        {memos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </div>
     </>
   );
 };
