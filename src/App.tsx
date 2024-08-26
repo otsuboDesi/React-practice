@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 
 import { MemoList } from "./components/MemoList";
 import { SButton } from "./components/Styles";
+import { useMemoList } from "./hooks/useMemoList";
 
 const Title = styled.h1``;
 
@@ -17,7 +18,7 @@ const SInput = styled.input`
 
 export const App = () => {
   const [text, setText] = useState<string>("");
-  const [memos, setMemos] = useState<string[]>([]);
+  const { memos, addList, deleteList } = useMemoList(text);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -25,17 +26,13 @@ export const App = () => {
   };
 
   const handleClickAdd = () => {
-    const newMemos = [...memos];
-    newMemos.push(text);
-    setMemos(newMemos);
+    addList(text);
     console.log("memo:", memos);
     setText("");
   };
 
   const handleClickDelete = (index: number) => {
-    const newMemos = [...memos];
-    newMemos.splice(index, 1);
-    setMemos(newMemos);
+    deleteList(index);
   };
   return (
     <>
