@@ -16,6 +16,12 @@ export const App = () => {
     console.log("memo:", memos);
     setText("");
   };
+
+  const handleClickDelete = (index: number) => {
+    const newMemos = [...memos];
+    newMemos.splice(index, 1);
+    setMemos(newMemos);
+  };
   return (
     <>
       <h1>Memo App</h1>
@@ -24,7 +30,10 @@ export const App = () => {
       <div>Memo List</div>
       <div>
         {memos.map((item, index) => (
-          <li key={index}>{item}</li>
+          <div key={index}>
+            <li>{item}</li>
+            <button onClick={() => handleClickDelete(index)}>Delete</button>
+          </div>
         ))}
       </div>
     </>
